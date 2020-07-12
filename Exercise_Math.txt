@@ -1,0 +1,28 @@
+Problem description:
+
+Part 1: Given an array of numbers, calculate the mean, median, and mode.
+Part 2: Memoized Fibonacci
+the Fibonacci numbers form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1 (which are given, not calculated).
+E.g.: the first numbers of the Fibonacci sequence are: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+Since the fibonacci series makes redundant exponential calls to itself, it can benefit dramatically from a strategy called memoization. In other words, if we keep a cache of all the inputs and outputs as we call our function, the number of calls will reduce to linear time. Of course, this means we have sacrificed additional memory.
+
+Input:
+Part 1:
+[1, 1, 2, 2, 3, 3, 4, 4]
+Part 2:
+6 (representing the index of the sequence)
+
+Output:
+Part 1:
+{ 
+  mean: 5,
+  median: 3,
+  mode: 2
+}
+Part 2:
+8 (representing the Fibonacci number found at the given index) 
+
+
+Bonus:
+save input and output with date and time in mongoDB
+save the cache for the memoization in the database

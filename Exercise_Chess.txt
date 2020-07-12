@@ -1,0 +1,43 @@
+Problem description:
+
+Given the position of two pieces on a chess board, indicate where they can move to and whether or not they are positioned so that they can attack each other.
+
+A chessboard can be represented by an 8 by 8 array.
+So if, for example, you're told the white queen is at D3 and the black queen at G6, then you'd know you've got a set-up like so:
+
+1_ _ _ _ _ _ _ _
+2_ _ _ _ _ _ _ _
+3_ _ _ W _ _ _ _
+4_ _ _ _ _ _ _ _
+5_ _ _ _ _ _ _ _
+6_ _ _ _ _ _ B _
+7_ _ _ _ _ _ _ _
+8_ _ _ _ _ _ _ _
+ A B C D E F G H
+
+You'd also be able to answer whether the queens can attack each other. In this case, that answer would be yes, they can, because both pieces share a diagonal.
+
+Input:
+{
+  white: {
+           type: rook,
+           position: 'D3'
+         },
+  black: {
+           type: knight,
+           position: 'G6'
+         }
+}
+
+Output:
+{
+  whiteMoves: ['H7', ...],
+  blackMoves: ['G2', ...],
+  canWhiteAttack: true,
+  canBlackAttack: false
+}
+
+Bonus:
+save input and output with date and time in mongoDB
+
+
