@@ -1,8 +1,27 @@
 
+// @ts-check
+
+
+/**
+ * Math functions
+ * @module exercise-math
+ * @author Omar Alghamdi
+ */
+
+/**
+ * Calculates the mean of array of numbers
+ * @param   {Number[]}  arr Input array
+ * @returns {Number}        The mean of all numbers in the array
+ */
 module.exports.findMean = (arr) => {
     return arr.reduce((acc, cur) => acc + cur) / arr.length;
 }
 
+/**
+ * Calculates the median of array of numbers
+ * @param   {Number[]} arr  Input array
+ * @returns {Number}        The the median of the array
+ */
 module.exports.findMedian = (arr) => {
     const len = arr.length;
     arr = arr.sort();
@@ -13,7 +32,11 @@ module.exports.findMedian = (arr) => {
     }
 }
 
-// if there is more than one mode, it returns only one
+/**
+ * Calculates the mode of array of numbers
+ * @param   {Number[]}  arr Input array
+ * @returns {Number}        The mode of the array. if array has multiple modes, only the smallest will be returned
+ */
 module.exports.findMode = (arr) => {
     let map = {}, mode, count = 0;
 
@@ -23,18 +46,23 @@ module.exports.findMode = (arr) => {
     }
     
     // find the highest count
-    for (key in map) {
+    for (let key in map) {
         if (map[key] > count) {
             mode = key;
             count = map[key];
         }
     }
 
-    return mode  
+    return Number.parseInt(mode, 10);
 }
 
-// if cache = true, return array of Fibonacci numbers
-module.exports.findFibonacci = (index, cache) => {
+/**
+ * Calculates the Fibonacci at a given index
+ * @param   {Number}    index           Index of the Fibonacci number
+ * @param   {Boolean}   [cache=false]   return the memoization
+ * @returns {Array}     [Fibonacci_number, memoization]. if cache is false the second element will be null
+ */
+module.exports.findFibonacci = (index, cache=false) => {
     let temp, a=0, b=1;
     let arr = [a, b]
     if (index == 0) {
