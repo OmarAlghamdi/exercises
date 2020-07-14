@@ -1,0 +1,30 @@
+@startuml
+
+actor user
+database MongoDB
+
+user ->> server ++ : /math/stat(array) 
+server -> "exercise-math" ++ : findMean(array)
+"exercise-math" --> server -- : number
+server -> "exercise-math" ++ : findMedian(array)
+"exercise-math" --> server -- : number
+server -> "exercise-math" ++ : FindMode(array)
+"exercise-math" --> server -- : number
+
+server ->> MongoDB ++ : logResult(method, input, output)
+MongoDB -->>server -- : result | error
+
+server -->> user -- : result object
+
+user ->> server ++ : /math/fibonacci(index) 
+server -> "exercise-math" ++ : findFibonacci(index,[cache])
+"exercise-math" --> server -- : array
+
+server ->> MongoDB ++ : logResult(method, input, output)
+MongoDB -->>server -- : result | error
+
+server -->> user -- : result number
+
+database MongoDB
+
+@enduml
