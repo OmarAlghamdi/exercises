@@ -1,4 +1,3 @@
-# Exercises
 Implementation of the exercises given during the weekly meeting on July/9.
 
 ## The API
