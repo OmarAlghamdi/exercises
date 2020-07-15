@@ -21,7 +21,13 @@ The Node server exposes 3 endpoints:
 
         Response: (Number) Fibonacci number
 
--   `/chess`: TODO
+-   `/chess/start`: TODO
+        Method: POST
+
+        Parameters: (Object) JSON object with two name-value pairs (white - black), each color has another two string name-value pairs (type - position)
+
+        Response: (Object) JSON object 
+
 
 ## Documentation
 Documentation is auto-generated using [jsdoc](https://jsdoc.app/). To regenerate run the `npm run doc`.

@@ -13,7 +13,7 @@ class Database {
      * @throws Throws error if db connection failed or cannot get collection
      */
     constructor(url, dbName) {
-        MongoClient.connect(url, {useUnifiedTopology: true})
+        MongoClient.connect(url, { useUnifiedTopology: true })
             .then(client => {
                 /** @private */
                 this.db = client.db(dbName);
@@ -24,8 +24,19 @@ class Database {
                     /** @private */
                     this.logs = res;
                 });
-            })
-            .catch(err => { throw err });
+
+                /**
+                 * @nadaalharbi 
+                 * Create chess collection
+                */
+                this.db.collection('chess', (error, result) => {
+                    if (error) {
+                        return console.log('Unable to insert chess collection.');
+                    }
+                    this.chess = result;
+                    console.log(`Connected Successfuly to the ${dbName} Database`)
+                });
+            });
     }
 
     /**
@@ -42,6 +53,25 @@ class Database {
             output: output,
             timestamp: new Date()
         });
+    }
+
+
+    /**
+     * @nadaalharbi
+     * Store request's input and output to the database with Time and Date
+     * @param {String} request   API POST request
+     * @param {Object} input     JSON object with two name-value pairs (white - black) separated by a comma
+     * each color has another two string name-value pairs (type - position)
+     * @param {Object} output    Response as JSON object 
+     */
+    chessResult(request, input, output) {
+        return this.chess.insertOne(
+            {
+                request: request,
+                input: input,
+                output: output,
+                date: new Date()
+            });
     }
 }
 
