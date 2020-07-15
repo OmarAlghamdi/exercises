@@ -1,0 +1,25 @@
+@startuml
+actor player
+
+player ->> server ++ : /chess/start(object) 
+server -> "exercise-chess" ++ : setChessboard(object, object)
+
+"exercise-chess"->"exercise-chess"++: convertCharToIndex(char)
+"exercise-chess" --> "exercise-chess" -- : number
+"exercise-chess"->"exercise-chess"++: canQueenAttack(number, number, number, number)
+"exercise-chess" --> "exercise-chess" -- : boolean
+"exercise-chess" --> server --
+
+server -> "exercise-chess" ++ : possibleMoves(string)
+"exercise-chess" --> server -- : Object
+server -> "exercise-chess" ++ : canWhiteAttack
+"exercise-chess" --> server -- : boolean
+server -> "exercise-chess" ++ : canBlackAttack
+"exercise-chess" --> server -- : boolean
+
+server ->> MongoDB ++ : logResult(method, input, output)
+MongoDB -->> server -- : result | error
+server -->> player -- : result object
+
+database MongoDB
+@enduml
