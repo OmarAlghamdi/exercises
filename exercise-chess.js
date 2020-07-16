@@ -68,8 +68,8 @@ module.exports.getMoves = (white, black) => {
         canBlackAttack = false;
     }
     
-    console.log(`Can White queen attack? ${canWhiteAttack}`);
-    console.log(`Can Black queen attack? ${canBlackAttack}`);
+    console.log(`Can White attack? ${canWhiteAttack}`);
+    console.log(`Can Black attack? ${canBlackAttack}`);
     
     return {whiteMoves, blackMoves, canWhiteAttack, canBlackAttack };
 }
