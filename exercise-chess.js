@@ -22,7 +22,7 @@ module.exports.getMoves = (white, black) => {
         'queen': chess.QUEEN,
         'bishop': chess.BISHOP,
         'knight': chess.KNIGHT,
-        'rock': chess.ROOK,
+        'rook': chess.ROOK,
         'pawn': chess.PAWN
     }
 
