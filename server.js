@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 /**
  * @nadaalharbi
- * @module excercise-chess
+ * @module exercise-chess
  */
 const chessGame = require('./exercise-chess');
 
@@ -60,23 +60,18 @@ app.route('/math/fibonacci/:index')
  * @nadaalharbi
  */
 app.post('/chess/start', (req, res) => {
-    const input = req.body;
-    const white = req.body.white;
-    const black = req.body.black;
+    const { white, black } = req.body;
 
-    chessGame.setChessboard(white, black);
-
-    const whitePosition = white.position.toLowerCase();
-    const blackPosition = black.position.toLowerCase();
+    const { whiteMoves, blackMoves, canWhiteAttack, canBlackAttack } = chessGame.getMoves(white, black);
 
     const output = {
-        whitePossibleMoves: chessGame.possibleMoves(whitePosition),
-        blackPossibleMoves: chessGame.possibleMoves(blackPosition),
-        canWhiteAttack: chessGame.canWhiteAttack,
-        canBlackAttack: chessGame.canBlackAttack
+        whitePossibleMoves: whiteMoves,
+        blackPossibleMoves: blackMoves,
+        canWhiteAttack: canWhiteAttack,
+        canBlackAttack: canBlackAttack
     };
     // save to db
-    db.logResult('chess/start', input, output);
+    db.logResult('chess/start', {white, black}, output);
     res.setHeader('Content-Type', 'application/json');
     res.json(output);
 });

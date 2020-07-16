@@ -2,7 +2,7 @@
   "name": "exercises",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server",
     "doc": "jsdoc --readme  ./README.md . -c ./jsdoc-config.json"
