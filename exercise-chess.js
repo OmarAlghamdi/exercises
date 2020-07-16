@@ -11,7 +11,7 @@ const { Chess } = require('chess.js');// library
  * 
  * @param {Object} white    Object from request's body
  * @param {Object} black    Object from request's body
- * @returns {}
+ * @returns {Object}        Object contains two arrays of string, and two boolean values
  */
 module.exports.getMoves = (white, black) => {
     const chess = new Chess();
@@ -28,11 +28,10 @@ module.exports.getMoves = (white, black) => {
 
     /** 
      * @example
-     * if the input is Rook or ROOK it will convert it to lowerCase
-    and takes the first char so if matches the chess library's chess.ROOK that returns 'r'
+     * if the input is Rook or ROOK it will be mapped to lower-case
+    and so if matches the chess library's chess.ROOK that returns 'rook' and includes the rules
     */
     let whiteType = mapPiece[white.type.toLowerCase()];
-    console.log("whiteType"+whiteType);
     const whitePosition = white.position.toLowerCase();
     let blackType = mapPiece[black.type.toLowerCase()];
     const blackPosition = black.position.toLowerCase();
@@ -41,9 +40,10 @@ module.exports.getMoves = (white, black) => {
     chess.put({ type: whiteType, color: chess.WHITE }, whitePosition);
     chess.put({ type: blackType, color: chess.BLACK }, blackPosition);
 
-    console.log("Current board setup")
+    console.log("Current board setup");
     console.log(chess.ascii());
 
+    // list all the possible moves 
     let whiteMoves = chess.moves({ square: whitePosition });
     chess.move(whiteMoves[0]);
     let blackMoves = chess.moves({ square: blackPosition });
@@ -73,6 +73,5 @@ module.exports.getMoves = (white, black) => {
     console.log(`Can White attack? ${canWhiteAttack}`);
     console.log(`Can Black attack? ${canBlackAttack}`);
     
-    console.log("typeof"+typeof whiteMoves);
     return {whiteMoves, blackMoves, canWhiteAttack, canBlackAttack };
 }
