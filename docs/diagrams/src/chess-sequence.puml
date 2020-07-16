@@ -2,20 +2,22 @@
 actor player
 
 player ->> server ++ : /chess/start(object) 
-server -> "exercise-chess" ++ : setChessboard(object, object)
+server -> "exercise-chess" ++ : getMoves(object, object)
 
-"exercise-chess"->"exercise-chess"++: convertCharToIndex(char)
-"exercise-chess" --> "exercise-chess" -- : number
-"exercise-chess"->"exercise-chess"++: canQueenAttack(number, number, number, number)
+"exercise-chess"->"exercise-chess"++: mapPiece(string)
+"exercise-chess" --> "exercise-chess" -- : string
+"exercise-chess"->"exercise-chess"++: possibleMoves(string)
+"exercise-chess" --> "exercise-chess" -- : array
+
+"exercise-chess"->"exercise-chess"++: canWhitAttack(string)
 "exercise-chess" --> "exercise-chess" -- : boolean
-"exercise-chess" --> server --
 
-server -> "exercise-chess" ++ : possibleMoves(string)
-"exercise-chess" --> server -- : Object
-server -> "exercise-chess" ++ : canWhiteAttack
-"exercise-chess" --> server -- : boolean
-server -> "exercise-chess" ++ : canBlackAttack
-"exercise-chess" --> server -- : boolean
+
+"exercise-chess"->"exercise-chess"++: canBlackAttack(string)
+"exercise-chess" --> "exercise-chess" -- : boolean
+
+
+"exercise-chess" --> server --: array, array, boolean, boolean
 
 server ->> MongoDB ++ : logResult(method, input, output)
 MongoDB -->> server -- : result | error

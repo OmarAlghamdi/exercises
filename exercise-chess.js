@@ -11,6 +11,7 @@ const { Chess } = require('chess.js');// library
  * 
  * @param {Object} white    Object from request's body
  * @param {Object} black    Object from request's body
+ * @returns {}
  */
 module.exports.getMoves = (white, black) => {
     const chess = new Chess();
@@ -31,6 +32,7 @@ module.exports.getMoves = (white, black) => {
     and takes the first char so if matches the chess library's chess.ROOK that returns 'r'
     */
     let whiteType = mapPiece[white.type.toLowerCase()];
+    console.log("whiteType"+whiteType);
     const whitePosition = white.position.toLowerCase();
     let blackType = mapPiece[black.type.toLowerCase()];
     const blackPosition = black.position.toLowerCase();
@@ -71,5 +73,6 @@ module.exports.getMoves = (white, black) => {
     console.log(`Can White attack? ${canWhiteAttack}`);
     console.log(`Can Black attack? ${canBlackAttack}`);
     
+    console.log("typeof"+typeof whiteMoves);
     return {whiteMoves, blackMoves, canWhiteAttack, canBlackAttack };
 }
